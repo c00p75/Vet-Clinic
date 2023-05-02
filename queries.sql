@@ -51,6 +51,42 @@ Update animals SET species = 'pokemon' WHERE species IS NULL;
 -- Save changes invoked by a transaction
 COMMIT;
 
+-- Verify updates
+SELECT species FROM animals;
+
+-- Start stransaction
+BEGIN;
+
+-- delete all records in the animals table
+DELETE FROM animals;
+
+-- Roll back changes in transaction
+ROLLBACK;
+
+-- Verify roll back
+SELECT * FROM animals;
+
+-- Start transaction
+BEGIN;
+
+-- Delete all animals born after Jan 1st, 2022.
+DELETE FROM animals WHERE date_of_birth > '2022/01/01';
+
+-- Create savepoint
+SAVEPOINT s1;
+
+-- Update all animals' weight to be their weight multiplied by -1.
+UPDATE animals SET weight_kg = weight_kg * -1;
+
+-- Rollback to the savepoint
+ROLLBACK TO s1;
+
+-- Update all animals' weights that are negative to be their weight multiplied by -1
+UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
+
+-- Save changes invoked by a transaction
+COMMIT;
+
 -- Verify that change was made and persists after commit
 SELECT * FROM animals;
 
@@ -68,7 +104,7 @@ SELECT AVG(weight_kg) AS average_weight FROM animals;
 SELECT neutered, MAX(escape_attempts) AS highest_escape_attempts FROM animals 
 GROUP BY neutered;
 
--- Minimum and maximum weight of each type of animal.ACCESS
+-- Minimum and maximum weight of each type of animal.
 SELECT species, MAX(weight_kg) AS max_wieght, MIN(weight_kg) AS min_wieght FROM animals 
 GROUP BY species;
 
