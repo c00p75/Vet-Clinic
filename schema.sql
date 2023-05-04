@@ -35,10 +35,10 @@ DROP species;
 
 -- Modify animals table (Add species_id column)
 ALTER TABLE animals
-ADD species_id INT 
+ADD species_id INT,
 ADD CONSTRAINT fk_species FOREIGN KEY(species_id) REFERENCES species(id);
 
 -- Modify animals table (Add owner_id column)
 ALTER TABLE animals
-ADD owner_id INT ;
+ADD owner_id INT,
 ADD CONSTRAINT fk_owner FOREIGN KEY(owner_id) REFERENCES owners(id);
