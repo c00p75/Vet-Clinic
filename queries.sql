@@ -163,7 +163,3 @@ INNER JOIN animals a
 ON o.id = a.owner_id
 GROUP BY o.full_name
 ORDER BY animal_count DESC;
-
-SELECT * FROM animals;
-SELECT * FROM species;
-SELECT * FROM owners;
