@@ -25,6 +25,8 @@
 # 📖 Vet Clinic SQL Database <a name="about-project"></a>
 
 > Vet Clinic uses a relational database to create the initial data structure for a vet clinic in order to insert, store, and query animals' information.
+  
+  ![schema diagram](./assets/Schema_diagram.jpg)
 
 ## 🛠 Built With <a name="built-with"></a>
 
